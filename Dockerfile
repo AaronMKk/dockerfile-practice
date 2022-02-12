@@ -1,5 +1,5 @@
 FROM ubcdsci/jupyterlab
 
-###new
+###n ew
 RUN pip3 install nibabel
 
