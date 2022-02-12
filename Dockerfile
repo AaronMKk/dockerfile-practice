@@ -26,7 +26,7 @@ RUN apt-get update --yes && \
 # Copy JupyterLab start-up script into container
 COPY start-notebook.sh sn\sn
 
-#new package xgbboost
+#new package of xgbboost
 RUN git clone --recursive https://github.com/dmlc/xgboost && \
     cd xgboost && \
     make -j4 && \
