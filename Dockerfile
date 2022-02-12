@@ -1,3 +1,3 @@
 FROM ubcdsci/jupyterlab
-#new packages
+#new package
 RUN pip3 install nibabel pydicom matplotlib pillow
