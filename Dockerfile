@@ -7,6 +7,10 @@ RUN conda install --yes --quiet --channel conda-forge \
     r-base=4.1.1 \
     r-irkernel
 
+
+#new package
+RUN pip3 install nibabel pydicom matplotlib pillow
+
 # Install JupyterLab Git Extension
 RUN pip install jupyterlab-git
 
@@ -24,17 +28,11 @@ RUN apt-get update --yes && \
     less
 
 # Copy JupyterLab start-up script into container
-COPY start-notebook.sh sn\sn
-
-#new package  xgbboost
-RUN git clone --recursive https://github.com/dmlc/xgboost && \
-    cd xgboost && \
-    make -j4 && \
-    cd python-package; python setup.py install
+COPY start-notebook.sh /usr/local/bin/
 
 # Change permission of startup script and execute it
-RUN chmod +x sn/snstart-notebook.sh
-ENTRYPOINT ["sn/snstart-notebook.sh"]
+RUN chmod +x /usr/local/bin/start-notebook.sh
+ENTRYPOINT ["/usr/local/bin/start-notebook.sh"]
 
 # Switch to staring in directory where volumes will be mounted
-WORKDIR "/sn"
+WORKDIR "/opt/notebooks"
